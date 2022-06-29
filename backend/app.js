@@ -3,7 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+var session = require('express-session');
+//var FileStore = require('session-file-store')(session)
+const MongoStore = require('connect-mongo');
+
 var config = require('./config')
+var passport = require('passport')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,6 +26,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+app.use(passport.initialize())
+
+app.use(session({
+  secret: 'dawdwadawdwa',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: config.mongoUrl,
+    autoRemove: 'native',
+  }),
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    maxAge: 30000,
+    secure: false
+  },
+  unset: 'destroy',
+  rolling: true
+})
+);
+app.use(passport.session())
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -47,7 +79,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { title: "ERROR" });
 });
 
 module.exports = app;

@@ -22,11 +22,25 @@ blogRouter.route('/')
     })
     .post(async (req, res, next) => {
         try {
-            var blog = Blogs.create(req.body);
+            var blog = await Blogs.create(req.body);
             res.statusCode = 201;
             res.setHeader("Content-Type", "application/json");
             res.json(blog);
             console.log("Blog Created")
+        } catch (err) {
+            next(err)
+        }
+    })
+    .put((req, res, next) => {
+        res.statusCode = 403;
+        res.end('PUT operation is not supported on /blog')
+    })
+    .delete(async (req, res, next) => {
+        try {
+            var result = await Blogs.remove({})
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(result);
         } catch (err) {
             next(err)
         }
