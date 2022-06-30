@@ -39,7 +39,7 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
         });
     }));
 
-exports.verifyUser = passport.authenticate('jwt', { session: false });
+exports.verifyUser = passport.authenticate('jwt', { session: true });
 
 exports.verifyAdmin = function (req, res, next) {
     if (req.user.admin) {

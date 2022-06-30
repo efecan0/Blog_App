@@ -16,8 +16,16 @@ var commentSchema = new Schema({
 
 var blogsSchema = new Schema({
     img: { data: Buffer, contentType: String },
-    title: String,
+    title: {
+        type: String,
+        unique: true
+    },
+    description: String,
     body: String,
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     likes: { type: Number, default: 0 },
     comments: [commentSchema]
 }, {
