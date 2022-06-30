@@ -15,7 +15,7 @@ var commentSchema = new Schema({
 });
 
 var blogsSchema = new Schema({
-    img: { data: Buffer, contentType: String },
+    img: String,
     title: {
         type: String,
         unique: true

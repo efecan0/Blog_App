@@ -14,6 +14,8 @@ var passport = require('passport')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blogRouter')
+const uploadRouter = require('./routes/uploadRouter');
+
 
 var app = express();
 
@@ -55,7 +57,8 @@ app.use(passport.session())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/blog', blogRouter)
+app.use('/blog', blogRouter);
+app.use('/imageUpload', uploadRouter);
 
 const mongoose = require('mongoose');
 const url = config.mongoUrl;
