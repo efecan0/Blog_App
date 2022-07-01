@@ -11,7 +11,7 @@ blogRouter.use(bodyParser.json());
 blogRouter.route('/')
     .get(async (req, res, next) => {
         try {
-            var blogs = await Blogs.find({});
+            var blogs = await Blogs.find({})
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
             res.json(blogs)
@@ -21,7 +21,13 @@ blogRouter.route('/')
     })
     .post(authenticate.verifyUser, async (req, res, next) => {
         try {
-            var blog = await Blogs.create({ "author": req.user._id, "body": req.body.body });
+            var blog = await Blogs.create({
+                "author": req.user._id,
+                "body": req.body.body,
+                "img": req.body.img,
+                "title": req.body.title,
+                "description": req.body.description
+            });
             res.statusCode = 201;
             res.setHeader("Content-Type", "application/json");
             res.json(blog);

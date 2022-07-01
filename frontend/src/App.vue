@@ -3,9 +3,11 @@
     <div class="main-wrapper">
       <sarp-header></sarp-header>
       <section class="blog-list px-3 py-5 p-md-5">
-        <div class="container">
+        <div class="container" v-if="form[0]">
           <blog-list
-            :datas="{ img: '/images/abc.jpg', baslik: 'selamlar' }"
+            v-for="data in form"
+            :key="data"
+            :formData="data"
           ></blog-list>
 
           <nav class="blog-nav nav nav-justified my-5">
@@ -85,9 +87,21 @@
 <script>
 import sarpHeader from "./components/HelloWorld.vue";
 import blogList from "./components/BlogList.vue";
+import axios from "axios";
 export default {
   name: "App",
   components: { sarpHeader, blogList },
+  data() {
+    return {
+      form: [],
+    };
+  },
+  beforeMount() {
+    axios.get("http://localhost:3000/blog").then((data) => {
+      this.form = data.data;
+      console.log(this.form);
+    });
+  },
 };
 </script>
 

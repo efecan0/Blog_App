@@ -3,12 +3,12 @@
     <div class="media">
       <img
         class="mr-3 img-fluid post-thumb d-none d-md-flex"
-        src="assets/images/blog/blog-post-thumb-7.jpg"
+        :src="'images/' + formData.img"
         alt="image"
       />
       <div class="media-body">
         <h3 class="title mb-1">
-          <a href="blog-post.html">Heading Lorem Ipsum Dolor Sit Amet</a>
+          <a href="blog-post.html">{{ formData.title }}</a>
         </h3>
         <div class="meta mb-1">
           <span class="date">Published 3 months ago</span
@@ -16,10 +16,7 @@
           ><span class="comment"><a href="#">4 comments</a></span>
         </div>
         <div class="intro">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
-          et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
-          felis, ultricies...
+          {{ formData.description }}
         </div>
         <a class="more-link" href="blog-post.html">Read more &rarr;</a>
       </div>
@@ -30,5 +27,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["formData"],
+  beforeMount() {
+    //console.log(this.formData);
+  },
+};
 </script>

@@ -16,8 +16,9 @@ var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blogRouter')
 const uploadRouter = require('./routes/uploadRouter');
 
-
 var app = express();
+const cors = require('cors');
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
