@@ -2,7 +2,7 @@
   <div class="hello">
     <header class="header text-center">
       <h1 class="blog-name pt-lg-4 mb-0">
-        <a href="index.html">Kepenekoglu</a>
+        <a href="index.html">BLOG</a>
       </h1>
 
       <nav class="navbar navbar-expand-lg navbar-dark">
@@ -27,7 +27,7 @@
             />
 
             <div class="bio mb-3">
-              ben sarp.<br /><a href="about.html">Find out more about me</a>
+              I'm efecan.<br /><a href="about.html">Find out more about me</a>
             </div>
             <!--//bio-->
             <ul class="social-list list-inline py-3 mx-auto">
