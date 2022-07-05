@@ -153,8 +153,8 @@
           <a
             class="nav-link-prev nav-item nav-link rounded-left"
             href="index.html"
-            >Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i
-          ></a>
+            >Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i>
+          </a>
           <a
             class="nav-link-next nav-item nav-link rounded-right"
             href="blog-list.html"
